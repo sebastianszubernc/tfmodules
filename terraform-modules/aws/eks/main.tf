@@ -12,11 +12,11 @@ terraform {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.eks.cluster_id
+  name = module.eks.cluster_name
 }
 
 provider "kubernetes" {
@@ -47,7 +47,7 @@ https://aws.amazon.com/blogs/containers/amazon-ebs-csi-driver-is-now-generally-a
 */
 
 resource "aws_eks_addon" "csi_driver" {
-  cluster_name             = module.eks.cluster_id
+  cluster_name             = module.eks.cluster_name
   addon_name               = "aws-ebs-csi-driver"
   addon_version            = "v1.11.4-eksbuild.1"
   service_account_role_arn = aws_iam_role.eks_ebs_csi_driver.arn
