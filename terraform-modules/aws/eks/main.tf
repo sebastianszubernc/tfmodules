@@ -103,10 +103,10 @@ module "eks" {
 
   cluster_endpoint_private_access                = var.cluster_endpoint_private_access
   
-  cluster_encryption_config = [{
+  cluster_encryption_config = {
     provider_key_arn = aws_kms_key.eks.arn
     resources        = ["secrets"]
-  }]
+  }
 
   cloudwatch_log_group_kms_key_id = module.kms_cloudwatch_log_group.kms_arn
   cloudwatch_log_group_retention_in_days = var.cloudwatch_log_group_retention_in_days
